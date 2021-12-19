@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<br>
+<h2> Sala de Reparações </h2>
+<div class="row">
+  <dir class="column-md-7">
+    <table border=1 class="table table-striped table-bordered bg-white table-sm">
+      <head>
+        <tr>
+          <td><h5>Id</h5></td>
+          <td><h5>Estado</h5></td>
+          <td><h5>Est. Entrega (mins)</h5></td>
+          <td><h5>Tipo</h5></td>
+          <td><h5>Localização</h5></td>
+          <td><h5>Opções</h5></td>
+        </tr>
+      </head>
+
+      <body>
+        {% if Dados %}
+          {% for x in Dados %}
+          <tr>
+              <td> {{x[0]}} </td>
+              <td> {{x[1]}} </td>
+              <td> {{x[2]}} </td>
+              <td> {{x[3]}} </td>
+              <td> {{x[4]}} </td>
+              <td>
+                  <a href="/reparar_dispositivo/{{x.0}}" class="btn btn-outline-success btn-sm">Reparar</a>
+              </td>
+          </tr>
+          {% endfor %}
+        {% endif %}
+      </body>
+    </table>
+  </dir>
+</div>
+
+
+{% endblock %}

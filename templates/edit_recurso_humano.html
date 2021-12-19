@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row">
+<dir class="column-md-5">
+<dir class="card card-body">
+	
+<form method="POST" action="/update_recurso_humano/{{x.0}}">
+
+    <div class="form-group">
+	Nome <input type="text" name="nome" value="{{x.1}}" required patern="\S.*" class="form-control">
+    </div>
+
+    <div class="form-group">
+    Data de Nascimento <input type="date" name="data" value="{{x.2}}" required class="form-control">
+    </div>
+
+    <div class="form-group">
+    Tipo de Recurso Humano<select name="tipo" class="form-control">
+		<option value="{{x.3}}" selected hidden>{{Tipo}}</option>
+        {% if Tipos %}
+            {% for e in Tipos %}
+                <option value="{{e.0}}">{{e.1}}</option>
+            {% endfor %}
+        {% endif %}
+    </select>
+    </div>
+
+    <div class="form-group">
+    Especialidade<select name="especialidade" class="form-control">
+		<option value="{{x.4}}" selected hidden>{{Especialidade}}</option>
+        {% if Especialidades %}
+            {% for e in Especialidades %}
+                <option value="{{e.0}}">{{e.1}}</option>
+            {% endfor %}
+        {% endif %}
+    </select>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" name="ok" value="Validar" class="btn btn-outline-primary btn-block">
+    </div>
+
+    <div class="form-group">
+      <button onclick="location.href='/listar_recurso_humano'" type="button" class="btn btn-outline-secondary btn-block">Cancelar</button>
+    </div>
+
+
+</form>
+</dir>
+</dir>
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<br>
+<h2> Recursos Humanos </h2>
+<div class="row">
+  <dir class="column-md-5">
+    <dir class="card card-body">
+
+
+      <form method="POST" action="/add_recurso_humano">
+        <div class="form-group">
+          Nome <input type="text" name="nome" required patern="\S.*" class="form-control">
+        </div>
+        <div class="form-group">
+          Data de Nascimento <input type="date" name="data" required class="form-control">
+        </div>
+        <div class="form-group">
+          Tipo de Recurso Humano<select name="tipo" class="form-control">
+            {% if Tipos %}
+              {% for e in Tipos %}
+                <option value="{{e.0}}">{{e.1}}</option>
+              {% endfor %}
+            {% else %}
+              <option hidden>Não Existem Tipos</option>
+            {% endif %}
+          </select>
+        </div>
+        <div class="form-group">
+          Especialidade<select name="especialidade" class="form-control">
+            {% if Especialidades %}
+              {% for e in Especialidades %}
+                <option value="{{e.0}}">{{e.1}}</option>
+              {% endfor %}
+            {% else %}
+              <option hidden >Não Existem Especialidades</option>
+            {% endif %}
+          </select>
+        </div>
+
+        {% if Especialidades and Tipos %}
+        <div class="form-group">
+          <input type="submit" name="ok" value="Validar" class="btn btn-outline-primary btn-block">
+        </div>
+        {% endif %}
+      </form>
+    </dir>
+    <br>
+  
+  </dir>
+
+
+  <dir class="column-md-7">
+
+    <table border=1 class="table table-striped table-bordered bg-white table-sm">
+        <head>
+            <tr>
+                <td><h4>Id</h4></td>
+                <td><h4>Nome</h4></td>
+                <td><h4>Data Nasc</h4></td>
+                <td><h4>Tipo</h4></td>
+                <td><h4>Especialidade</h4></td>
+                <td><h4>Opções</h4></td>
+            </tr>
+        </head>
+        <body>
+            {% if Dados %}
+                {% for x in Dados %}
+                <tr>
+                    <td> {{x[0]}} </td>
+                    <td> {{x[1]}} </td>
+                    <td> {{x[2]}} </td>
+                    <td> {{x[3]}} </td>
+                    <td> {{x[4]}} </td>
+                    <td>
+                        <a href="/edit_recurso_humano/{{x.0}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                        <a href="/delete_recurso_humano/{{x.0}}" class="btn btn-outline-danger btn-sm">Remover</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </body>
+    </table>
+    
+    </dir>
+</div>
+
+
+
+{% endblock %}

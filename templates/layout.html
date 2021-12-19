@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+   <title>Hospital App</title>
+   <!-- Bootstrap -->
+   <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/"><h3>HospitalApp</h3></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Listar
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" onclick="location.href='/listar_dispositivo'">Dispositivos</a>
+              <a class="dropdown-item" href="#" onclick="location.href='/listar_recurso_humano'">Recursos Humanos</a>
+              <a class="dropdown-item" href="#" onclick="location.href='/listar_localizacao'">Localizações</a>
+              <a class="dropdown-item" href="#" onclick="location.href='/listar_especialidade'">Especialidades</a>
+              <a class="dropdown-item" href="#" onclick="location.href='/listar_tipo_dispositivo'">Tipos de Dispositivos</a>
+              <a class="dropdown-item" href="#" onclick="location.href='/listar_tipo_recurso_humano'">Tipos de Recursos Humanos</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sala_de_reparacoes">Sala de Reparações</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/listar_deslocacao">Deslocações</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/listar_permissoes">Permissões</a>
+          </li>
+        </ul>
+      </div>
+
+  </nav>
+  <br>
+  
+
+
+  <div class="container">
+
+    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+          {% if 'Não foi p' in msg %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {% elif 'Sucesso' in msg %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {% else %}
+            <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+          {% endif %}
+          {{msg}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    
+
+
+    {% block body %}
+    {% endblock %}
+    
+  </div>
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
